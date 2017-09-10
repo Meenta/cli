@@ -1,0 +1,27 @@
+{
+	"name": "meenta-cli",
+	"version": "1.0.0",
+	"description": "CLI for Meenta Cloud Storage.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"engineStrict" : true,
+	"engines" : {
+		"node" : ">=6.0.0"
+	},
+	"bin": {
+		"meenta": "./meenta.js"
+	},
+	"author": "Stephan Smith",
+	"license": "ISC",
+	"dependencies": {
+		"aws-sdk": "^2.105.0",
+		"nedb": "^1.8.0",
+		"user-home": "^2.0.0",
+		"yargs": "^8.0.2",
+		"express": "^4.15.4",
+		"request": "^2.81.0",
+		"underscore": "^1.8.3"
+	}
+}
