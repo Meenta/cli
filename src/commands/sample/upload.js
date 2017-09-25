@@ -10,10 +10,10 @@ exports.handler = function (argv) {
 	transport.upload('v1/sample/-' + argv.id + '/data', argv.file).then(result => {
 
 		console.log(result)
-		
+
 	}).catch(reason => {
 
-		console.log(reason);
+		console.log('Unable to upload', reason.message);
 	})
 
 }

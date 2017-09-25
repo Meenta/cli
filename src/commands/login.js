@@ -11,31 +11,45 @@ exports.handler = function (argv) {
   console.log(`setting ${argv.token} to ${argv.secret}`)
 
 	var params = {
-		form:{
+		form: {
 			token: argv.token,
 			secret: argv.secret
 		}
-	};
+	}
 
-	request.post('http://localhost:4000/v1/authentication', params, function (err, res, body) {
+	db.getSetup().then(function(api) {
+		console.log('Using', api.domain)
 
-		if (res.statusCode === 403) {
-			console.log('Invalid key/secret');
-		} else {
-			var data = JSON.parse(body);
+		request.post(api.domain + '/v1/authentication', params, function (err, res, body) {
 
-			var doc = {
-				key: 'token',
-				token: data.token
-			};
+			if (res.statusCode === 403) {
+				console.log('Invalid key/secret');
+			} else {
+				if (body === 'Invalid token.') {
+					console.log('Auth Failed, Reason:', body)
+				} else {
+					var data = JSON.parse(body);
 
-			db.saveActiveUser(doc, function(err, data) {
-				if (err) return console.log('Unable to save session');
+					var auth = {
+						key: 'token',
+						token: data.token,
+						_id: api.env
+					};
 
-				console.log('Session enabled.');
-			})
-		}
+					db.setEnvironmentAuth(api.env, auth, function(err, data) {
+						if (err) return console.log('Unable to save session');
+						console.log('Session enabled.');
+					})
+				}
+			}
+		})
 
+	}).catch(reason => {
+		console.log('Error', reason)
 	})
+
+	return;
+
+
 
 }
