@@ -16,6 +16,7 @@ exports.get = function(route, verbose) {
 
 	return new Promise((resolve, reject) => {
 		var p1 = db.getEnvironment()
+
 		p1.then(env => {
 			if (!env.auth) return console.log('Login Required')
 			var params = header(env.auth)
