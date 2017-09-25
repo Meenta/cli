@@ -15,10 +15,9 @@ exports.handler = function (argv) {
 	}
 
 	transport.download('v1/sample/-' + argv.id + '/data', argv.file, argv.dest).then(result => {
-		if (err) return console.log('err', err.message);
 
 		console.log(result.msg)
-		console.log('Local File', result.file)
+		console.log('Local File', result.file, result.fullPath)
 
 	}).catch(reason => {
 

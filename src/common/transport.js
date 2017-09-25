@@ -107,7 +107,7 @@ exports.download = function(route, file, dest, verbose) {
 			request.get(url, options)
 				.pipe(local)
 				.on('close', function() {
-					resolve({ msg: 'Find download complete', file: filename })
+					resolve({ msg: 'Find download complete', file: filename, pullPath: path.resolve(filename) })
 				})
 
 		}).catch(err => {

@@ -17,9 +17,9 @@ exports.handler = function (argv) {
 			console.log('\t', i + '. ', file.Key, '( ' +file.Size + ' kb )');
 			i++;
 		})
-		
+
 	}).catch(err => {
-		console.log(err);
+		console.log(err.message);
 	})
 
 }
