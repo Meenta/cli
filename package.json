@@ -6,15 +6,15 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"engineStrict" : true,
-	"engines" : {
-		"node" : ">=6.0.0"
+	"engineStrict": true,
+	"engines": {
+		"node": ">=6.0.0"
 	},
 	"bin": {
 		"meenta": "./meenta.js"
 	},
 	"author": "Stephan Smith",
-	"license": "ISC",
+	"email": "Stephan@meenta.io",
 	"dependencies": {
 		"aws-sdk": "^2.105.0",
 		"nedb": "^1.8.0",
